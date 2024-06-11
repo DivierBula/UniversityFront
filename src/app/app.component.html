@@ -1,0 +1,17 @@
+<div class="toolbar" role="banner">
+  <img width="40" alt="Angular Logo" src="../assets/Icon/student_icon.png" />
+  <span>Bienvenido</span>
+    <div class="spacer"></div>
+      <nav id="myNavbar" class="nav nav-pills nav-fill customer">
+        <a class="nav-link" [routerLink]="['/Home']" routerLinkActive="active">Inicio</a>
+        <a class="nav-link" [routerLink]="['/Estudiante']" routerLinkActive="active">Adm. Estudiantes</a>
+        <a class="nav-link" [routerLink]="['/Profesor']" routerLinkActive="active">Adm. Profesor</a>
+        <a class="nav-link" [routerLink]="['/Materia']" routerLinkActive="active">Mis Materias</a>
+        <a class="nav-link" [routerLink]="['/Programacion']" routerLinkActive="active">Asignaturas</a>
+        <a class="nav-link" [routerLink]="['/Asociarprograma']" routerLinkActive="active">Programación</a>
+      </nav>
+      <a id="logoutLink" aria-label="Salir" rel="noopener" href="#" title="Salir" (click)="onclickOut()">
+        <img class="out" src="../assets/Icon/out.png" alt="">
+      </a>
+</div>
+<router-outlet></router-outlet>

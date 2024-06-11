@@ -1,0 +1,68 @@
+<p>programacion works!</p>
+
+  
+<div class="content" role="main">
+
+    <div class="card highlight-card card-small">
+      <span>HISTORIAL DE PROGRAMAS INSCRITOS</span>
+    </div>
+
+    <div class="list-Student w-100">
+        <div class="custom-table">
+            <div class="w-100 mt-3">
+                <div class="input-group">
+                    <label class="visually-hidden" for="specificSizeInputGroupUsername">Buscar</label>
+                    <div class="input-group-text">Buscar por materia:</div>
+                    <input style="max-width: 150px;" type="text" class="form-control" [(ngModel)]="nombreMateria" placeholder="nombre...">
+                    <button class="btn btn-primary" type="button" (click)="BuscarMateria()">Buscar</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID Programa</th>
+                    <th>Nombre Programa</th>
+                    <th>Nombre Profesor</th>
+                    <th>Nombre Estudiante</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of service.allStudents">
+                        <td>{{ user.program?.idPrograma }}</td>
+                        <td>{{ user.program?.nombre }}</td>
+                        <td>{{ user.program?.profesor?.nombre }}</td>
+                        <td>{{ user.nombre }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="service.allStudents == undefined">
+                <div class="card">
+                    <span class="loader"></span>
+                    <span>Cargando...</span>
+                </div>
+            </div>
+            <div *ngIf="service.allStudents?.length == 0">
+                <div class="card">
+                    <span>Sin Datos.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+  

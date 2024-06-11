@@ -1,0 +1,107 @@
+
+  
+<div class="content" role="main">
+
+    <div class="card highlight-card card-small">
+      <span>PROGRAMAS INSCRITOS</span>
+    </div>
+    <form class="custom-form w-100" [formGroup]="checkoutForm">
+        <h1 style="text-align: center">Consultar Estudiante</h1>
+        <div class="container-form">
+            <div class="form-group mt-3">
+                <input type="number"
+                formControlName="codigo"
+                class="form-control" id="telefono"
+                placeholder="Ingresa el codigo estudiantil"
+                required="required">
+            </div>
+            <button class="btn btn-success mt-3"  [disabled]="!checkoutForm.valid" type="submit" (click)="BuscarProgramas()">Consultar</button>
+        </div>
+    </form>
+
+    <div class="list-Student w-100">
+        <div class="custom-table">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID Programa</th>
+                    <th>Nombre</th>
+                    <th>creditos</th>
+                    <th>Duracion (Diás)</th>
+                    <th>Profesor</th>
+                    <th>Estudiantes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of service.allUsers">
+                    <td>{{ user.idPrograma }}</td>
+                    <td>{{ user.nombre }}</td>
+                    <td>{{ user.creditos }}</td>
+                    <td>{{ user.duracionEnDias }}</td>
+                    <td>{{ user.profesor.nombre }}</td>
+                    <td><button class="btn btn-primary btn-sm" (click)="OpenDetalle(user)">Detalle</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="service.loader && service.allUsers == undefined">
+                <div class="card">
+                    <span class="loader"></span>
+                    <span>Cargando...</span>
+                </div>
+            </div>
+            <div *ngIf="!service.loader && (service.allUsers == undefined || service.allUsers.length == 0)">
+                <div class="card">
+                    <span>Sin Datos.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-Student w-100" *ngIf="isVisible">
+        <div class="custom-table">
+            <div class="w-100">
+                <h4>Estudiantes Asignados:</h4>
+            </div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>Estudiantes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of service.allStudents">
+                    <td>{{ user.nombre }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="service.loader && service.allStudents == undefined">
+                <div class="card">
+                    <span class="loader"></span>
+                    <span>Cargando...</span>
+                </div>
+            </div>
+            <div *ngIf="!service.loader && (service.allStudents == undefined || service.allStudents.length == 0)">
+                <div class="card">
+                    <span>Sin Datos.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+  

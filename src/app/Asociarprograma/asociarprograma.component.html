@@ -1,0 +1,101 @@
+
+<div class="content" role="main">
+    <div class="card highlight-card card-small">
+        <span>ASIGNAR MATERIA</span>
+    </div>
+   
+    <form class="custom-form w-100" [formGroup]="checkoutForm">
+        <h1 style="text-align: center">Asignar Materia:</h1>
+        <div class="container-form">
+            <div class="form-group mt-2">
+                <label for="nombre">Codigo estudiantil:</label>
+                <input type="number"
+                formControlName="IdEstudiante"
+                class="form-control" id="IdEstudiante"
+                placeholder="Ingresa el codigo estudiantil"
+                required="required">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="telefono">Seleccione la asignatura:</label>
+                <select class="form-select" multiple aria-label="Multiple select example" formControlName="asignatura" required="required">
+                    <option *ngFor="let asignatura of service.allUsers" [value]="asignatura.idPrograma">
+                      {{ asignatura.nombre }}
+                    </option>
+                  </select>
+            </div>
+            <button class="btn btn-success mt-3"  [disabled]="!checkoutForm.valid" type="submit" (click)="OnSubmit()">Registrar</button>
+            
+        </div>
+    </form>
+   
+    
+    <div class="list-Student w-100">
+        <div class="custom-table">
+            <div class="w-100">
+                <h5>Materias activas:</h5>
+            </div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID Programa</th>
+                    <th>Nombre</th>
+                    <th>creditos</th>
+                    <th>Duracion (Diás)</th>
+                    <th>Profesor</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of service.allUsers">
+                    <td>{{ user.idPrograma }}</td>
+                    <td>{{ user.nombre }}</td>
+                    <td>{{ user.creditos }}</td>
+                    <td>{{ user.duracionEnDias }}</td>
+                    <td>{{ user.profesor.nombre }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div *ngIf="service.allUsers == undefined">
+                <div class="card">
+                    <span class="loader"></span>
+                    <span>Cargando...</span>
+                </div>
+            </div>
+            <div *ngIf="service.allUsers?.length == 0">
+                <div class="card" >
+                    <span>Sin Datos.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+  

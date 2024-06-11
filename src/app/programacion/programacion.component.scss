@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .loader {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+    margin-right: 10px;
+    
+  }

@@ -1,0 +1,100 @@
+<div class="content" role="main">
+
+    <div class="card highlight-card card-small">
+        <span>ESTUDIANTES</span>
+    </div>
+    <div *ngIf="isVisible">
+        <form class="custom-form w-100" [formGroup]="checkoutForm">
+            <h1 style="text-align: center">{{tituloText}}:</h1>
+            <div class="container-form">
+                <div class="form-group mt-2">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text"
+                    formControlName="nombre"
+                    class="form-control" id="nombre"
+                    placeholder="Ingresa tu nombre"
+                    required="required">
+                </div>
+    
+                <div class="form-group mt-3">
+                    <label for="telefono">Telefono:</label>
+                    <input type="number"
+                    formControlName="telefono"
+                    class="form-control" id="telefono"
+                    placeholder="Ingresa tu teléfono"
+                    required="required">
+                </div>
+                <div *ngIf="isCreacion == 'Crear'">
+                <button class="btn btn-success mt-3"  [disabled]="!checkoutForm.valid" type="submit" (click)="OnSubmit()">Registrar</button></div>
+                <div *ngIf="isCreacion == 'Actualizar'">
+                <button class="btn btn-success mt-3"  [disabled]="!checkoutForm.valid" type="submit" (click)="UpdateUser()">Actualizar</button></div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="list-Student w-100">
+        <div class="custom-table">
+            <div class="w-100">
+                <button class="btn btn-success mt-3" type="submit" (click)="OpenForm('Crear' , isVisible ? false : true)">{{buttonText}}</button>
+            </div>
+            <div class="w-100 mt-3">
+                <div class="input-group">
+                    <label class="visually-hidden" for="specificSizeInputGroupUsername">Buscar</label>
+                    <div class="input-group-text">Buscar Estudiante:</div>
+                    <input style="max-width: 150px;" type="text" class="form-control" [(ngModel)]="buscarIdentificacion" placeholder="Identificación...">
+                    <button class="btn btn-primary" type="button" (click)="BuscarId()">Buscar</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID Estudiante</th>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Actualizar</th>
+                    <th>Eliminar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of service.allUsers">
+                    <td>{{ user.idEstudiante }}</td>
+                    <td>{{ user.nombre }}</td>
+                    <td>{{ user.telefono }}</td>
+                    <td>
+                    <button class="btn btn-primary btn-sm" (click)="OpenUpdateUser(user)">Actualizar</button>
+                    </td>
+                    <td>
+                    <button class="btn btn-danger btn-sm" (click)="OpenDeleteUser(user)">Eliminar</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div *ngIf="service.allUsers == undefined">
+                <div class="card">
+                    <span class="loader"></span>
+                    <span>Cargando...</span>
+                </div>
+            </div>
+            <div *ngIf="service.allUsers.length == 0">
+                <div class="card" >
+                    <span>Sin Datos.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+  
